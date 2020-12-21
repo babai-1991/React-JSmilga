@@ -2,13 +2,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import '../src/style.css';
+
 const BookList = () => {
-	return <Book />;
+	return (
+		<section className="booklist">
+			<Book />
+			<Book />
+			<Book />
+			<Book />
+			<Book />
+			<Book />
+			<Book />
+		</section>
+	);
 };
 
 const Book = () => {
 	return (
-		<article>
+		<article className="book">
 			<BookImage />
 			<BookTitle />
 			<BookAuthor />
