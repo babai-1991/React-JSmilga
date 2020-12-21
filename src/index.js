@@ -2,34 +2,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-function Greeting() {
-	return (
-		<div>
-			<h3>
-				<Person />
-				<Message />
-				-<span>
-					<DateDisplay />
-				</span>
-			</h3>
-		</div>
-	);
-}
-
-function DateDisplay() {
-	return new Date().toString();
-}
-
-const Person = () => {
-	return <p>Babai</p>;
+const BookList = () => {
+	return <Book />;
 };
 
-const Message = function() {
+const Book = () => {
 	return (
-		<div>
-			<h3>Welcome to gitHub</h3>
-		</div>
+		<article>
+			<BookImage />
+			<BookTitle />
+			<BookAuthor />
+		</article>
 	);
 };
 
-ReactDOM.render(<Greeting />, document.getElementById('root'));
+const BookTitle = () => {
+	return <h1>Barack Obama</h1>;
+};
+const BookAuthor = () => {
+	return <h4>Barack Obama</h4>;
+};
+const BookImage = () => {
+	return <img src="https://images-na.ssl-images-amazon.com/images/I/91uwocAMtSL._AC_UL200_SR200,200_.jpg" />;
+};
+
+ReactDOM.render(<BookList />, document.getElementById('root'));
