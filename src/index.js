@@ -22,24 +22,33 @@ const BookList = () => {
 				bookName={firstBookInformation.bookName}
 				authorName={firstBookInformation.authorName}
 				bookCover={firstBookInformation.bookCover}
-			/>
+			>
+				<p>
+					A riveting, deeply personal account of history in the making-from the president who inspired us to
+					believe in the power of democracy
+				</p>
+			</Book>
 			<Book
 				bookName={secondBookInformation.bookName}
 				authorName={secondBookInformation.authorName}
 				bookCover={secondBookInformation.bookCover}
-			/>
+			>
+				<p>Want to learn a bunch of random facts about history, science, true crime, and the paranormal?</p>
+			</Book>
 		</section>
 	);
 };
 
 const Book = (props) => {
-	//I like to destructure the props here , but you could do in argument too..
 	const { bookCover, bookName, authorName } = props;
+	//You could destructure children like this
+	//const { bookCover, bookName, authorName, children } = props;
 	return (
 		<article className="book">
 			<img src={bookCover} />
 			<h1>{bookName}</h1>
 			<h4>-{authorName}</h4>
+			{props.children}
 		</article>
 	);
 };
