@@ -29,10 +29,10 @@ const Book = () => {
 };
 
 const BookTitle = () => {
-	return <h1>Barack Obama</h1>;
+	return <h1>A Promised Land</h1>;
 };
 const BookAuthor = () => {
-	return <h4>Barack Obama</h4>;
+	return <h4 style={{ color: '#6179d8' }}>Barack Obama</h4>;
 };
 const BookImage = () => {
 	return <img src="https://images-na.ssl-images-amazon.com/images/I/91uwocAMtSL._AC_UL200_SR200,200_.jpg" />;
