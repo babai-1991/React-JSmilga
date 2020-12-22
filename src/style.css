@@ -44,6 +44,10 @@ body {
 	color: #a59191;
 }
 
+.book .btn {
+	margin-right: 1.05rem;
+}
+
 @media screen and (min-width: 768px) {
 	.booklist {
 		grid-template-columns: repeat(3, 1fr);
