@@ -33,11 +33,13 @@ const BookList = () => {
 };
 
 const Book = (props) => {
+	//I like to destructure the props here , but you could do in argument too..
+	const { bookCover, bookName, authorName } = props;
 	return (
 		<article className="book">
-			<img src={props.bookCover} />
-			<h1>{props.bookName}</h1>
-			<h4>-{props.authorName}</h4>
+			<img src={bookCover} />
+			<h1>{bookName}</h1>
+			<h4>-{authorName}</h4>
 		</article>
 	);
 };
