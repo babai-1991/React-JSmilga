@@ -2,38 +2,34 @@
 import React, { useState } from 'react';
 
 const UseStateObject = () => {
-	const personObj = {
-		Name: 'Peter',
-		Age: 29,
-		Message: 'Hello Peter'
+	/*
+  *****************
+  multiple useState
+  *****************
+  */
+	let [ name, setName ] = useState('Babai');
+	let [ jobProfile, setJobProfile ] = useState('Software Developer');
+	let [ skills, setSkills ] = useState('C#,Asp.NET MVC,Javscript');
+
+	const changeProperty = () => {
+		setName('Suvankar Das');
+		setJobProfile('Senior Software Engineer');
+		setSkills((skills += ',ReactJS'));
 	};
 
-	const [ person, setPerson ] = useState(personObj);
-
-	/*
-********************
-Event handler
-********************
-*/
-	const changeMessageProperty = () => {
-		setPerson({
-			...personObj, //spreading/copying whole obj first and then only override message
-			Message: 'Changed Message'
-		});
-	};
-
-	/*
-********************
-End of Event handler
-********************
-*/
 	return (
 		<React.Fragment>
-			<h3>{person.Name}</h3>
-			<h3>{person.Age}</h3>
-			<h3>{person.Message}</h3>
-			<button type="button" className="btn" onClick={changeMessageProperty}>
-				Change Message
+			<h3>{name}</h3>
+			<h3>{jobProfile}</h3>
+			<div>
+				<ul>
+					{skills.split(',').map((skill, index) => {
+						return <li key={index}>{skill}</li>;
+					})}
+				</ul>
+			</div>
+			<button type="button" className="btn" onClick={changeProperty}>
+				Change Status
 			</button>
 		</React.Fragment>
 	);
