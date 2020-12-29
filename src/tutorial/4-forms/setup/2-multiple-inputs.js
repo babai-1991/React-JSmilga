@@ -1,30 +1,33 @@
+//2-multiple-inputs.js
 import React, { useState } from 'react';
-// JS
-// const input = document.getElementById('myText');
-// const inputValue = input.value
-// React
-// value, onChange
-// dynamic object keys
-
 const ControlledInputs = () => {
-  const [firstName, setFirstName] = useState('');
-  const [email, setEmail] = useState('');
+  const [person,setPerson] = useState({firstName:'',email:'',zipCode:''});
   const [people, setPeople] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (firstName && email) {
-      const person = { id: new Date().getTime().toString(), firstName, email };
-      console.log(person);
-      setPeople((people) => {
-        return [...people, person];
-      });
-      setFirstName('');
-      setEmail('');
-    } else {
-      console.log('empty values');
+    const{firstName,email,zipCode} = person;
+    if(firstName&&email&&zipCode){
+      console.log(firstName,email,zipCode)
+      const personWithId = {...person,id:new Date().getTime().toString()};
+      setPeople([...people,personWithId]);
+
+      //reset all field
+      setPerson({firstName:'',email:'',zipCode:''})
+    }
+    else{
+      alert('Cannot be empty');
     }
   };
+  const handleChange = (e)=>{
+    // two properties I want from event object is => name and value
+    const inputName = e.target.name;
+    const inputValue = e.target.value;
+    setPerson({...person,[inputName]:inputValue})
+   
+    console.log(person);
+
+  }
   return (
     <>
       <article>
@@ -35,8 +38,8 @@ const ControlledInputs = () => {
               type='text'
               id='firstName'
               name='firstName'
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              value={person.firstName}
+              onChange={handleChange}
             />
           </div>
           <div className='form-control'>
@@ -45,18 +48,29 @@ const ControlledInputs = () => {
               type='email'
               id='email'
               name='email'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={person.email}
+              onChange={handleChange}
+            />
+          </div>
+          <div className='form-control'>
+            <label htmlFor='zip'>Postal /Zip : </label>
+            <input
+              type='text'
+              id='zip'
+              name='zipCode'
+              value={person.zipCode}
+              onChange={handleChange}
             />
           </div>
           <button type='submit'>add person</button>
         </form>
         {people.map((person, index) => {
-          const { id, firstName, email } = person;
+          const { id, firstName, email,zipCode } = person;
           return (
             <div className='item' key={id}>
               <h4>{firstName}</h4>
               <p>{email}</p>
+              <p>{zipCode}</p>
             </div>
           );
         })}
