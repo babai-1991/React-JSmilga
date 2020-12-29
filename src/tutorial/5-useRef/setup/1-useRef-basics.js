@@ -1,3 +1,4 @@
+//1-useRef-basics.js
 import React, { useEffect, useRef } from 'react';
 
 // preserves value
@@ -5,7 +6,28 @@ import React, { useEffect, useRef } from 'react';
 // target DOM nodes/elements
 
 const UseRefBasics = () => {
-  return <h2>useRef</h2>;
+	const refContainer = useRef(null);
+	const divRefContainer = useRef(null);
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		console.log(refContainer);
+		console.log('The value is :=> ' + refContainer.current.value);
+		console.log(divRefContainer.current); //show me the div
+	};
+	useEffect(() => {
+		refContainer.current.focus();
+	});
+	return (
+		<React.Fragment>
+			<form className="form" onSubmit={handleSubmit}>
+				<div>
+					<input id="txtName" type="text" ref={refContainer} />
+					<button type="submit">Submit</button>
+					<div ref={divRefContainer}>hello</div>
+				</div>
+			</form>
+		</React.Fragment>
+	);
 };
 
 export default UseRefBasics;

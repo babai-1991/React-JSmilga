@@ -8,7 +8,7 @@ const ControlledInputs = () => {
     e.preventDefault();
     const{firstName,email,zipCode} = person;
     if(firstName&&email&&zipCode){
-      console.log(firstName,email,zipCode)
+      //console.log(firstName,email,zipCode)
       const personWithId = {...person,id:new Date().getTime().toString()};
       setPeople([...people,personWithId]);
 
