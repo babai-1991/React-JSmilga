@@ -5,7 +5,24 @@ import { data } from '../../../data';
 // reducer function
 
 const reducer = (state, action) => {
-	//do stuff later
+	if (action.type === 'ADD_ITEM') {
+		const newPeople = [ ...state.people, action.payload ];
+
+		return {
+			...state,
+			people: newPeople,
+			isModalOpen: true,
+			modalContent: 'Hello From Modal'
+		};
+	}
+	if (action.type === 'NO_VALUE') {
+		return {
+			...state,
+			isModalOpen: true,
+			modalContent: 'Please enter valid name'
+		};
+	}
+	throw new Error('Invalid Action Type!');
 };
 
 const initialState = {
@@ -21,7 +38,11 @@ const Index = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (name) {
+			const newItem = { id: new Date().getTime().toString(), name: name };
+			dispatch({ type: 'ADD_ITEM', payload: newItem });
+			setName('');
 		} else {
+			dispatch({ type: 'NO_VALUE' });
 		}
 	};
 
