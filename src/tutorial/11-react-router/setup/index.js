@@ -1,3 +1,4 @@
+//index.js
 import React from 'react';
 // react router
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -10,7 +11,26 @@ import Person from './Person';
 // navbar
 import Navbar from './Navbar';
 const ReactRouterSetup = () => {
-  return <h2>react router</h2>;
+	return (
+		<Router>
+			<Navbar />
+			<Switch>
+				<Route exact path="/">
+					<Home />
+				</Route>
+				<Route path="/about">
+					<About />
+				</Route>
+				<Route path="/staff">
+					<People />
+				</Route>
+				<Route path="/person/:id" children={<Person />} />
+				<Route path="*">
+					<Error />
+				</Route>
+			</Switch>
+		</Router>
+	);
 };
 
 export default ReactRouterSetup;
